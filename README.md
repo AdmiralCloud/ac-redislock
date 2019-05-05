@@ -13,7 +13,12 @@ Init function requires a valid redis instance.
 LockKey has the following parameters
 + redisKey - STRING required name for the key
 + expires - OPTIONAL INT seconds after the lock is released, defaults to 10 seconds
-+ values - OPTIONAL STRING value for this redisKey. Use it to compare/secure lock values
++ value - OPTIONAL STRING value for this redisKey. Use it to compare/secure lock values
+
+
+ReleaseKey has the following parameters
++ redisKey - STRING required name for the key
++ value - if set will be compared with the redisKey value before releasing. If not matching, the function will return an error message
 
 
 ## Examples
@@ -36,6 +41,9 @@ redisLock.lockKey(params, (err) => {
   // or NULL -> key is not yet locked, but now is
 })
 
+redisLock.releaseKey(params, (err) => {
+  // redisKey is deleted and lock released
+})
 
 
 ```
