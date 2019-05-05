@@ -1,4 +1,5 @@
 const _ = require('lodash')
+const async = require('async')
 const uuidV4 = require('uuid/v4')
 
 const redisLock = () => {
@@ -39,9 +40,40 @@ const redisLock = () => {
     })
   }
 
+  const releaseLock = (params, cb) => {
+    if (!this.redis) return cb({ message: 'redisNotAvailable', initiator: 'ac-redisLock' })
+
+    const redisKey = params.redisKey
+    if (!redisKey) return cb({ message: 'redisKey_isRequired', initiator: 'ac-redisLock' })
+    const value = params.value
+
+    async.series({
+      checkValue: (done) => {
+        if (!value) return done()
+        this.redis.get(redisKey, (err, result) => {
+          if (err) return done(err)
+          if (result !== value) return done({ message: 'valueMismatch' })
+          return done()
+        })
+      },
+      deleteKey: (done) => {
+        this.redis.del(redisKey, (err) => {
+          if (err) {
+            if (_.get(err, 'message') === 'Connection is closed.') {
+              return done({ status: 503, message: 'redisDown' }) // return 503 to signal a problem with Redis
+            }
+            return done(err)
+          }
+          return done()
+        })
+      }
+    }, cb)
+  }
+
   return {
     init,
-    lockKey
+    lockKey,
+    releaseLock
   }
 }
 
