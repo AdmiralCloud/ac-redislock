@@ -1,3 +1,14 @@
+<a name="1.0.2"></a>
+## [1.0.2](https://github.com/mmpro/ac-redislock/compare/v1.0.1...v1.0.2) (2019-05-06 09:30)
+
+
+### Bug Fixes
+
+* **RedisLock:** Improved error messages | MP ([d0f03fd](https://github.com/mmpro/ac-redislock/commit/d0f03fd))    
+  Improved error messages
+
+
+
 <a name="1.0.1"></a>
 ## [1.0.1](https://github.com/mmpro/ac-redislock/compare/v1.0.0...v1.0.1) (2019-05-05 11:03)
 
