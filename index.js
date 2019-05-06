@@ -20,10 +20,10 @@ const redisLock = () => {
    * @param cb (err or null) err can be 423 (redis key is locked) or a real error or null
    */
   const lockKey = (params, cb) => {
-    if (!this.redis) return cb({ message: 'redisNotAvailable', initiator: 'ac-redisLock' })
+    if (!this.redis) return cb({ message: 'lockKey_redisNotAvailable', initiator: 'ac-redisLock' })
 
     const redisKey = params.redisKey
-    if (!redisKey) return cb({ message: 'redisKey_isRequired', initiator: 'ac-redisLock' })
+    if (!redisKey) return cb({ message: 'lockKey_redisKey_isRequired', initiator: 'ac-redisLock' })
     const expires = (params.expires && parseInt(params.expires)) || 10 // 10 seconds default value
     const value = params.value || uuidV4()
 
@@ -41,10 +41,10 @@ const redisLock = () => {
   }
 
   const releaseLock = (params, cb) => {
-    if (!this.redis) return cb({ message: 'redisNotAvailable', initiator: 'ac-redisLock' })
+    if (!this.redis) return cb({ message: 'releaseLock_redisNotAvailable', initiator: 'ac-redisLock' })
 
     const redisKey = params.redisKey
-    if (!redisKey) return cb({ message: 'redisKey_isRequired', initiator: 'ac-redisLock' })
+    if (!redisKey) return cb({ message: 'releaseLock_redisKey_isRequired', initiator: 'ac-redisLock' })
     const value = params.value
 
     async.series({
@@ -52,7 +52,7 @@ const redisLock = () => {
         if (!value) return done()
         this.redis.get(redisKey, (err, result) => {
           if (err) return done(err)
-          if (result !== value) return done({ message: 'valueMismatch' })
+          if (result !== value) return done({ message: 'releaseLock_valueMismatch' })
           return done()
         })
       },
