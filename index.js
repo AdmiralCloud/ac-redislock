@@ -8,10 +8,17 @@ const redisLock = () => {
    * @param params.logger {Instance} optional logger (e.g. Winston). Falls back to console
    * @param params.logLevel {String} optional logLevel
    */
-  const init = (params) => {
+  const init = (params, cb) => {
     this.redis = params.redis
     this.logger = _.get(params, 'logger', console)
-    this.logLevel = _.get(params, 'logLevel', 'silly')
+    this.logLevel = _.get(params, 'logLevel', 'log')
+
+    // make a test connection
+    const testKey = uuidV4()
+    this.redis.set(testKey, 1, 'EX', 1, (err) => {
+      if (err) this.logger['error']({ message: 'cannotConnectToRedis' })
+      if (_.isFunction(cb)) return cb(err)
+    })
   }
 
   /**
