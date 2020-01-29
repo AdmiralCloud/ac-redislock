@@ -1,3 +1,14 @@
+<a name="1.0.5"></a>
+## [1.0.5](https://github.com/mmpro/ac-redislock/compare/v1.0.4...v1.0.5) (2020-01-29 10:03)
+
+
+### Bug Fixes
+
+* **RedisLock:** Typo fix | MP ([1ba5e257fb43e0ba0a8a64e72a02bf9d2d87dde3](https://github.com/mmpro/ac-redislock/commit/1ba5e257fb43e0ba0a8a64e72a02bf9d2d87dde3))    
+  Make sure error is only logged if there is an error
+
+
+
 <a name="1.0.4"></a>
 ## [1.0.4](https://github.com/mmpro/ac-redislock/compare/v1.0.3...v1.0.4) (2020-01-29 08:12)
 
