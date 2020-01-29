@@ -1,3 +1,14 @@
+<a name="1.0.4"></a>
+## [1.0.4](https://github.com/mmpro/ac-redislock/compare/v1.0.3...v1.0.4) (2020-01-29 08:12)
+
+
+### Bug Fixes
+
+* **RedisLock:** ReleaseLock's callback is now optional | MP ([9ef6a5e7b66d55c32e478221b7b8677ca2c7fa46](https://github.com/mmpro/ac-redislock/commit/9ef6a5e7b66d55c32e478221b7b8677ca2c7fa46))    
+  ReleaseLock's callback is now optional
+
+
+
 <a name="1.0.3"></a>
 ## [1.0.3](https://github.com/mmpro/ac-redislock/compare/v1.0.2...v1.0.3) (2019-12-28 13:07)
 
