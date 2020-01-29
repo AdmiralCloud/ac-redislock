@@ -76,7 +76,7 @@ const redisLock = () => {
       }
     }, err => {
       if (_.isFunction(cb)) return cb(err)
-      this.logger['error']('ac-redisLock | ReleaseLock | Failed | %j', err)
+      if (err) this.logger['error']('ac-redisLock | ReleaseLock | Failed | %j', err)
     })
   }
 
