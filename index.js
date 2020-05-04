@@ -1,6 +1,6 @@
 const _ = require('lodash')
 const async = require('async')
-const uuidV4 = require('uuid/v4')
+const { v4: uuidV4 } = require('uuid')
 
 const redisLock = () => {
   /**
@@ -59,7 +59,7 @@ const redisLock = () => {
         if (!value) return done()
         this.redis.get(redisKey, (err, result) => {
           if (err) return done(err)
-          if (result !== value) return done({ message: 'releaseLock_valueMismatch', additionalInfo: { redisKey } })
+          if (result !== value) return done({ message: 'releaseLock_valueMismatch', additionalInfo: { redisKey, expected: result, sent: value } })
           return done()
         })
       },

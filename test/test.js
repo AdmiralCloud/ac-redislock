@@ -1,6 +1,6 @@
 const redisLock = require('../index')
 const expect = require('chai').expect
-const uuidV4 = require('uuid/v4')
+const { v4: uuidV4 } = require('uuid')
 
 const Redis = require('ioredis')
 const redis = new Redis()
