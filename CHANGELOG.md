@@ -1,3 +1,20 @@
+<a name="1.0.6"></a>
+
+## [1.0.6](https://github.com/mmpro/ac-redislock/compare/v1.0.5..v1.0.6) (2020-05-04 19:22:06)
+
+
+### Bug Fix
+
+* **App:** Improved error message for lockValue mismatch | MP | [c7d6036693cbd74b8a3811317fc45654b96f2978](https://github.com/mmpro/ac-redislock/commit/c7d6036693cbd74b8a3811317fc45654b96f2978)    
+Improved error message for lockValue mismatch
+### Refactor
+
+* **App:** Replaced uuid with latest version | MP | [8a0768e69f1586b93fecb9a559b3ba6e7d8537a8](https://github.com/mmpro/ac-redislock/commit/8a0768e69f1586b93fecb9a559b3ba6e7d8537a8)    
+Replaced uuid with latest version
+### Chores
+
+* **App:** Prepare package for ac-semantic-release | MP | [32e6493b86871493692dd338203fe0f8aacf36c8](https://github.com/mmpro/ac-redislock/commit/32e6493b86871493692dd338203fe0f8aacf36c8)    
+Prepare package for ac-semantic-release
 <a name="1.0.5"></a>
 ## [1.0.5](https://github.com/mmpro/ac-redislock/compare/v1.0.4...v1.0.5) (2020-01-29 10:03)
 
