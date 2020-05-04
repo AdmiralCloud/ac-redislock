@@ -5,36 +5,23 @@
   "repository": "mmpro/ac-redislock",
   "version": "1.0.5",
   "dependencies": {
+    "ac-semantic-release": "^0.1.1",
     "async": "^3.1.0",
     "lodash": "^4.17.15",
-    "uuid": "^3.3.2"
+    "uuid": "^8.0.0"
   },
   "devDependencies": {
-    "ac-conventional-changelog-template": "github:mmpro/ac-conventional-changelog-template",
     "chai": "^4.2.0",
-    "corp-semantic-release": "github:mmpro/corp-semantic-release",
-    "cz-customizable": "github:mmpro/cz-customizable",
     "eslint": "^6.x",
-    "husky": "^4.2.x",
     "ioredis": "^4.14.1",
     "mocha": "^7.x",
-    "mocha-jenkins-reporter": "github:mmpro/mocha-jenkins-reporter",
-    "mocha-junit-reporter": "^1.22.0",
-    "mocha-multi-reporters": "^1.1.4"
+    "mocha-jenkins-reporter": "github:mmpro/mocha-jenkins-reporter"
   },
   "scripts": {
     "test": "mocha --reporter spec",
     "test-jenkins": "JUNIT_REPORT_PATH=./report.xml mocha --colors --reporter mocha-jenkins-reporter --reporter-options junit_report_name='ByteConverter'"
   },
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-customizable"
-    },
-    "cz-customizable": {
-      "config": ".czConfig.js"
-    }
-  },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=10.0.0"
   }
 }
