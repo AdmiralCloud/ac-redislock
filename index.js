@@ -59,7 +59,7 @@ const redisLock = () => {
         if (!value) return done()
         this.redis.get(redisKey, (err, result) => {
           if (err) return done(err)
-          if (result !== value) return done({ message: 'releaseLock_valueMismatch', additionalInfo: { redisKey, expected: result, sent: value } })
+          if (result !== value) return done({ message: 'releaseLock_valueMismatch', additionalInfo: { redisKey, expected: result, value } })
           return done()
         })
       },
