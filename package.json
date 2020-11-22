@@ -5,16 +5,16 @@
   "repository": "mmpro/ac-redislock",
   "version": "1.0.6",
   "dependencies": {
-    "ac-semantic-release": "^0.1.1",
+    "ac-semantic-release": "^0.2.5",
     "async": "^3.1.0",
-    "lodash": "^4.17.15",
-    "uuid": "^8.0.0"
+    "lodash": "^4.17.20",
+    "uuid": "^8.3.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "eslint": "^6.x",
-    "ioredis": "^4.14.1",
-    "mocha": "^7.x",
+    "eslint": "^7.14.0",
+    "ioredis": "^4.19.2",
+    "mocha": "^8.2.x",
     "mocha-jenkins-reporter": "github:mmpro/mocha-jenkins-reporter"
   },
   "scripts": {
