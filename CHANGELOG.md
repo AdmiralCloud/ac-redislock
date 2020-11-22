@@ -1,3 +1,12 @@
+<a name="1.0.7"></a>
+
+## [1.0.7](https://github.com/mmpro/ac-redislock/compare/v1.0.6..v1.0.7) (2020-11-22 09:13:15)
+
+
+### Bug Fix
+
+* **App:** Package updates | MP | [3779d9cec07981324c42aff4a84074bc3f6f6329](https://github.com/mmpro/ac-redislock/commit/3779d9cec07981324c42aff4a84074bc3f6f6329)    
+Package updates
 <a name="1.0.6"></a>
 
 ## [1.0.6](https://github.com/mmpro/ac-redislock/compare/v1.0.5..v1.0.6) (2020-05-04 19:22:06)
