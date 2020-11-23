@@ -8,15 +8,20 @@ const redisLock = () => {
    * @param params.logger {Instance} optional logger (e.g. Winston). Falls back to console
    * @param params.logLevel {String} optional logLevel
    */
+
+  let redis
+  let logger
+  let logLevel
+
   const init = (params, cb) => {
-    this.redis = params.redis
-    this.logger = _.get(params, 'logger', console)
-    this.logLevel = _.get(params, 'logLevel', 'log')
+    redis = params.redis
+    logger = _.get(params, 'logger', console)
+    logLevel = _.get(params, 'logLevel', 'log')
 
     // make a test connection
     const testKey = uuidV4()
-    this.redis.set(testKey, 1, 'EX', 1, (err) => {
-      if (err) this.logger['error']({ message: 'cannotConnectToRedis' })
+    redis.set(testKey, 1, 'EX', 1, (err) => {
+      if (err) logger['error']({ message: 'cannotConnectToRedis' })
       if (_.isFunction(cb)) return cb(err)
     })
   }
@@ -27,15 +32,15 @@ const redisLock = () => {
    * @param cb (err or null) err can be 423 (redis key is locked) or a real error or null
    */
   const lockKey = (params, cb) => {
-    if (!this.redis) return cb({ message: 'lockKey_redisNotAvailable', initiator: 'ac-redisLock' })
+    if (!redis) return cb({ message: 'lockKey_redisNotAvailable', initiator: 'ac-redisLock' })
 
     const redisKey = params.redisKey
     if (!redisKey) return cb({ message: 'lockKey_redisKey_isRequired', initiator: 'ac-redisLock' })
     const expires = (params.expires && parseInt(params.expires)) || 10 // 10 seconds default value
     const value = params.value || uuidV4()
 
-    this.redis.set(redisKey, value, 'EX', expires, 'NX', (err, result) => {
-      this.logger[this.logLevel]('ac-redisLock: REDIS LOCK status for key %s expires %s status %s', redisKey, expires, (result || 423))
+    redis.set(redisKey, value, 'EX', expires, 'NX', (err, result) => {
+      logger[logLevel]('ac-redisLock: REDIS LOCK status for key %s expires %s status %s', redisKey, expires, (result || 423))
       if (err) {
         if (_.get(err, 'message') === 'Connection is closed.') {
           return cb({ status: 503, message: 'redisDown' }) // return 503 to signal a problem with Redis
@@ -48,7 +53,7 @@ const redisLock = () => {
   }
 
   const releaseLock = (params, cb) => {
-    if (!this.redis) return cb({ message: 'releaseLock_redisNotAvailable', initiator: 'ac-redisLock' })
+    if (!redis) return cb({ message: 'releaseLock_redisNotAvailable', initiator: 'ac-redisLock' })
 
     const redisKey = params.redisKey
     if (!redisKey) return cb({ message: 'releaseLock_redisKey_isRequired', initiator: 'ac-redisLock' })
@@ -57,14 +62,14 @@ const redisLock = () => {
     async.series({
       checkValue: (done) => {
         if (!value) return done()
-        this.redis.get(redisKey, (err, result) => {
+        redis.get(redisKey, (err, result) => {
           if (err) return done(err)
           if (result !== value) return done({ message: 'releaseLock_valueMismatch', additionalInfo: { redisKey, expected: result, value } })
           return done()
         })
       },
       deleteKey: (done) => {
-        this.redis.del(redisKey, (err) => {
+        redis.del(redisKey, (err) => {
           if (err) {
             if (_.get(err, 'message') === 'Connection is closed.') {
               return done({ status: 503, message: 'redisDown' }) // return 503 to signal a problem with Redis
@@ -76,7 +81,7 @@ const redisLock = () => {
       }
     }, err => {
       if (_.isFunction(cb)) return cb(err)
-      if (err) this.logger['error']('ac-redisLock | ReleaseLock | Failed | %j', err)
+      if (err) logger['error']('ac-redisLock | ReleaseLock | Failed | %j', err)
     })
   }
 
