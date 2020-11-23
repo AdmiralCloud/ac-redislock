@@ -1,3 +1,16 @@
+<a name="1.0.8"></a>
+
+## [1.0.8](https://github.com/mmpro/ac-redislock/compare/v1.0.7..v1.0.8) (2020-11-23 19:14:04)
+
+
+### Bug Fix
+
+* **App:** Use vars instead of this | MP | [1b9279e0a51f68dd8b85427770ac287b693c071a](https://github.com/mmpro/ac-redislock/commit/1b9279e0a51f68dd8b85427770ac287b693c071a)    
+Use vars instead of this
+### Chores
+
+* **App:** Updated ESLint config | MP | [445fa5a172074296576b3e8caacd09e49116cc45](https://github.com/mmpro/ac-redislock/commit/445fa5a172074296576b3e8caacd09e49116cc45)    
+Updated ESLint config
 <a name="1.0.7"></a>
 
 ## [1.0.7](https://github.com/mmpro/ac-redislock/compare/v1.0.6..v1.0.7) (2020-11-22 09:13:15)
