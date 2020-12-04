@@ -1,3 +1,16 @@
+<a name="1.0.9"></a>
+
+## [1.0.9](https://github.com/mmpro/ac-redislock/compare/v1.0.8..v1.0.9) (2020-12-04 08:29:13)
+
+
+### Bug Fix
+
+* **App:** Bring back singleton approach | MP | [753fece644e44333cddafc4b0dd5f9289a896979](https://github.com/mmpro/ac-redislock/commit/753fece644e44333cddafc4b0dd5f9289a896979)    
+Bring back singleton approach
+### Chores
+
+* **App:** Updated packages | MP | [226bf1b875525d8516df3113bb4bff540ea778d7](https://github.com/mmpro/ac-redislock/commit/226bf1b875525d8516df3113bb4bff540ea778d7)    
+Updated packages
 <a name="1.0.8"></a>
 
 ## [1.0.8](https://github.com/mmpro/ac-redislock/compare/v1.0.7..v1.0.8) (2020-11-23 19:14:04)
