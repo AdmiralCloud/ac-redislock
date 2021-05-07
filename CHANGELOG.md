@@ -1,3 +1,20 @@
+<a name="1.0.10"></a>
+
+## [1.0.10](https://github.com/mmpro/ac-redislock/compare/v1.0.9..v1.0.10) (2021-05-07 11:28:22)
+
+
+### Bug Fix
+
+* **App:** Add option to suppress mismatch warning when releasing a key | MP | [aff7e74ba0e0a5a4eadd50b48eaac1fff880117c](https://github.com/mmpro/ac-redislock/commit/aff7e74ba0e0a5a4eadd50b48eaac1fff880117c)    
+if true, no warning will be logged if the value does not match the stored one
+### Chores
+
+* **App:** Updated packages | MP | [543baf7c56beedb80aa89f9b4e40c5473c316075](https://github.com/mmpro/ac-redislock/commit/543baf7c56beedb80aa89f9b4e40c5473c316075)    
+Updated packages
+### Chores
+
+* **App:** Updated gitignore | MP | [c16054f9d50d5100f2771a73a566a266fe540a8d](https://github.com/mmpro/ac-redislock/commit/c16054f9d50d5100f2771a73a566a266fe540a8d)    
+Updated ignore
 <a name="1.0.9"></a>
 
 ## [1.0.9](https://github.com/mmpro/ac-redislock/compare/v1.0.8..v1.0.9) (2020-12-04 08:29:13)
