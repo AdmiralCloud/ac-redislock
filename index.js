@@ -13,6 +13,7 @@ const redisLock = function() {
     this.redis = params.redis
     this.logger = _.get(params, 'logger', console)
     this.logLevel = _.get(params, 'logLevel', 'log')
+    this.suppressMismatch = _.get(params, 'suppressMismatch', false)
 
     // make a test connection
     const testKey = uuidV4()
@@ -54,13 +55,17 @@ const redisLock = function() {
     const redisKey = params.redisKey
     if (!redisKey) return cb({ message: 'releaseLock_redisKey_isRequired', initiator: 'ac-redisLock' })
     const value = params.value
+    const suppressMismatch = _.get(params, 'suppressMismatch', this.suppressMismatch)
 
     async.series({
       checkValue: (done) => {
         if (!value) return done()
         this.redis.get(redisKey, (err, result) => {
           if (err) return done(err)
-          if (result !== value) return done({ message: 'releaseLock_valueMismatch', additionalInfo: { redisKey, expected: result, value } })
+          if (result !== value) {
+            if (suppressMismatch) return done(900)
+            return done({ message: 'releaseLock_valueMismatch', additionalInfo: { redisKey, expected: result, value } })
+          }
           return done()
         })
       },
@@ -76,8 +81,9 @@ const redisLock = function() {
         })
       }
     }, err => {
-      if (_.isFunction(cb)) return cb(err)
+      if (err === 900) err = null
       if (err) this.logger['error']('ac-redisLock | ReleaseLock | Failed | %j', err)
+      if (_.isFunction(cb)) return cb(err)
     })
   }
 

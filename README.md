@@ -9,6 +9,7 @@ Init function requires a valid redis instance.
 + redis - INSTANCE required Redis instance
 + logger - OPTIONAL INSTANCE logger instance (e.g. Winston)
 + logLevel - OPTIONAL STRING logLevel for the Redis operation
++ suppressMismatch - OPTIONAL BOOL - if true, release mismatches are not logged
 
 ```
 redisLock.lockKey(params, callback)
@@ -28,6 +29,7 @@ redisLock.releaseLock(params, [callback])
 ReleaseKey has the following parameters
 + redisKey - STRING required name for the key
 + value - if set will be compared with the redisKey value before releasing. If not matching, the function will return an error message
++ suppressMismatch - if true, no warning will be locked if the value does not match the stored one (see "multiple processes" section)
 + optional callback - returns error or null
 
 ## Examples
@@ -57,6 +59,9 @@ redisLock.releaseKey(params, (err) => {
 
 
 ```
+
+## Multiple Processes
+If you use thie package on multiple instances and want to make sure only of those instances processes a job we recommend to set suppressMismatch in order to avoid error messages if a process tries to release a key even though it did not lock it.
 
 ## Links
 - [Website](https://www.admiralcloud.com/)
