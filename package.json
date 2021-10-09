@@ -3,7 +3,7 @@
   "author": "Mark Poepping (https://www.admiralcloud.de)",
   "license": "MIT",
   "repository": "admiralcloud/ac-redislock",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "dependencies": {
     "ac-semantic-release": "^0.2.6",
     "async": "^3.2.1",
