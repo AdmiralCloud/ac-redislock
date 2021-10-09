@@ -29,7 +29,7 @@ redisLock.releaseLock(params, [callback])
 ReleaseKey has the following parameters
 + redisKey - STRING required name for the key
 + value - if set will be compared with the redisKey value before releasing. If not matching, the function will return an error message
-+ suppressMismatch - if true, no warning will be locked if the value does not match the stored one (see "multiple processes" section)
++ suppressMismatch - if true, no warning will be logged if the value does not match the stored one (see "multiple processes" section)
 + optional callback - returns error or null
 
 ## Examples
