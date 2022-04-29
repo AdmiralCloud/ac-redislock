@@ -1,6 +1,11 @@
 # AC RedisLock
 This tool can be used to lock operations (e.g. make sure workers will fetch a job only once)
 
+## Breaking changes version 2
+RedisLock will now be only initialized once - if parameters redis, logger, logLevel, suppressMismatch are already set (by first init call) they are re-used and no longer overwritten.
+
+If you want the old behaviour, init again with parameter reInit=true.
+
 ## Requirements
 Requires an existing Redis connection.
 
@@ -10,6 +15,9 @@ Init function requires a valid redis instance.
 + logger - OPTIONAL INSTANCE logger instance (e.g. Winston)
 + logLevel - OPTIONAL STRING logLevel for the Redis operation
 + suppressMismatch - OPTIONAL BOOL - if true, release mismatches are not logged
++ reInit - OPTIONAL BOOL - if true, you can re-init ac-redisLock, otherwise existing values (from first init) will be used (the latter is the default behaviour)
+
+Those options will init ac-redislock once. Calling it again will not have any effect as long as you do not use reInit=true.
 
 ```
 redisLock.lockKey(params, callback)
@@ -65,8 +73,6 @@ If you use thie package on multiple instances and want to make sure only of thos
 
 ## Links
 - [Website](https://www.admiralcloud.com/)
-- [Twitter (@admiralcloud)](https://twitter.com/admiralcloud)
-- [Facebook](https://www.facebook.com/MediaAssetManagement/)
 
 ## License
-[MIT License](https://opensource.org/licenses/MIT) Copyright © 2009-present, AdmiralCloud, mmpro GmbH, Mark Poepping
+[MIT License](https://opensource.org/licenses/MIT) Copyright © 2009-present, AdmiralCloud, AdmiralCloud AG, Mark Poepping

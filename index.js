@@ -10,10 +10,12 @@ const redisLock = function() {
    */
 
   const init = function(params, cb) {
-    this.redis = params.redis
-    this.logger = _.get(params, 'logger', console)
-    this.logLevel = _.get(params, 'logLevel', 'log')
-    this.suppressMismatch = _.get(params, 'suppressMismatch', false)
+    // only initialize if instance does not exist
+    if (_.get(params, 'reInit')) this.redis = undefined
+    this.redis = this.redis || params.redis
+    this.logger = this.logger || _.get(params, 'logger', console)
+    this.logLevel = this.logLevel || _.get(params, 'logLevel', 'log')
+    this.suppressMismatch = this.suppressMismatch || _.get(params, 'suppressMismatch', false)
 
     // make a test connection
     const testKey = uuidV4()
