@@ -1,3 +1,25 @@
+<a name="2.0.0"></a>
+ 
+# [2.0.0](https://github.com/admiralcloud/ac-redislock/compare/v1.0.11..v2.0.0) (2022-04-29 12:10:20)
+
+
+### Feature
+
+* **App:** ac-redislock is now only initialized once | MP | [b5a944f5d878f8120110fc2882203c5706cdc9dc](https://github.com/admiralcloud/ac-redislock/commit/b5a944f5d878f8120110fc2882203c5706cdc9dc)    
+If you run init again, it will not have any effect  
+Related issues: [undefined/undefined#master](undefined/browse/master)
+### Chores
+
+* **App:** Move package to AdmiralCloud aG | MP | [54ee5e169b933e33ed661082c1d99f5276acd9e5](https://github.com/admiralcloud/ac-redislock/commit/54ee5e169b933e33ed661082c1d99f5276acd9e5)    
+Move ac-redisLock to AdmiralCloud AG  
+Related issues: [/issues#undefined](https://github.com//issues/undefined)
+### Chores
+
+* **App:** Updated packages | MP | [876dcdddfa21ca911d2abfe9b7bb5c4ff84f334b](https://github.com/admiralcloud/ac-redislock/commit/876dcdddfa21ca911d2abfe9b7bb5c4ff84f334b)    
+Updated packages  
+Related issues: [undefined/undefined#master](undefined/browse/master)
+## BREAKING CHANGES
+* **App:** See README for breaking changes
 <a name="1.0.11"></a>
 
 ## [1.0.11](https://github.com/mmpro/ac-redislock/compare/v1.0.10..v1.0.11) (2021-10-09 10:10:08)
