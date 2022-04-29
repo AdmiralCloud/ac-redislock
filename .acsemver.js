@@ -1,6 +1,6 @@
 module.exports = {
   repository: {
-    url: 'https://github.com/mmpro/ac-redislock'
+    url: 'https://github.com/admiralcloud/ac-redislock'
   },
   changelogFile: __dirname + '/CHANGELOG.md',
   sections: [

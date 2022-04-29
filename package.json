@@ -1,6 +1,6 @@
 {
   "name": "ac-redislock",
-  "author": "Mark Poepping (https://www.admiralcloud.de)",
+  "author": "Mark Poepping (https://www.admiralcloud.com)",
   "license": "MIT",
   "repository": "admiralcloud/ac-redislock",
   "version": "1.0.11",
