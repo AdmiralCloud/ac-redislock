@@ -1,3 +1,31 @@
+<a name="3.0.0"></a>
+ 
+# [3.0.0](https://github.com/admiralcloud/ac-redislock/compare/v2.0.1..v3.0.0) (2022-12-18 10:17:32)
+
+
+### Bug Fix
+
+* **App:** Package updates | MP | [f9d7d9af9dd472e7f1df08b406fbea2d4e9aba81](https://github.com/admiralcloud/ac-redislock/commit/f9d7d9af9dd472e7f1df08b406fbea2d4e9aba81)    
+Package updates - Node 16 required  
+Related issues: [undefined/undefined#master](undefined/browse/master)
+### Documentation
+
+* **App:** Added badge for Github action result | MP | [f0118059616a313ab816735fceb36d4341ca87f4](https://github.com/admiralcloud/ac-redislock/commit/f0118059616a313ab816735fceb36d4341ca87f4)    
+Added badge for Github action result  
+Related issues: [undefined/undefined#master](undefined/browse/master)
+### Chores
+
+* **App:** Fixed workflows - fixed matrix | MP | [b4e3905b0d96c99b078d2ee03458993e892e7257](https://github.com/admiralcloud/ac-redislock/commit/b4e3905b0d96c99b078d2ee03458993e892e7257)    
+Fixed workflows - fixed matrix  
+Related issues: [undefined/undefined#master](undefined/browse/master)
+* **App:** Fixed workflows - added Redis | MP | [8757bc716b91e28a537e4422ea3bcebd7577ad15](https://github.com/admiralcloud/ac-redislock/commit/8757bc716b91e28a537e4422ea3bcebd7577ad15)    
+Fixed workflows - added Redis  
+Related issues: [undefined/undefined#master](undefined/browse/master)
+* **App:** Add automated tests on Github | MP | [5f76ab0824925340d25ee8c0391cc86eca1c6d8d](https://github.com/admiralcloud/ac-redislock/commit/5f76ab0824925340d25ee8c0391cc86eca1c6d8d)    
+Add automated tests on Github  
+Related issues: [undefined/undefined#master](undefined/browse/master)
+## BREAKING CHANGES
+* **App:** Node 16+ required
 <a name="2.0.1"></a>
 
 ## [2.0.1](https://github.com/admiralcloud/ac-redislock/compare/v2.0.0..v2.0.1) (2022-07-22 05:29:36)
