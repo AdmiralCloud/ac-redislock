@@ -3,6 +3,8 @@ This tool can be used to lock operations (e.g. make sure workers will fetch a jo
 
 ![example workflow](https://github.com/admiralcloud/ac-redislock/actions/workflows/node.js.yml/badge.svg)
 
+## Breaking changes version 4
+Version 4 no longer supports callbacks! Please use async/await instead.
 
 ## Breaking changes version 2
 RedisLock will now be only initialized once - if parameters redis, logger, logLevel, suppressMismatch are already set (by first init call) they are re-used and no longer overwritten.
