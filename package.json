@@ -5,17 +5,18 @@
   "repository": "admiralcloud/ac-redislock",
   "version": "3.0.0",
   "dependencies": {
-    "ac-semantic-release": "^0.3.4",
-    "async": "^3.2.4",
+    "ac-semantic-release": "^0.4.3",
+    "async": "^3.2.6",
     "lodash": "^4.17.21",
-    "uuid": "^9.0.0"
+    "node-cache": "^5.1.2",
+    "uuid": "^11.0.3"
   },
   "devDependencies": {
-    "chai": "^4.3.7",
-    "eslint": "^8.30.0",
-    "ioredis": "^5.2.4",
-    "mocha": "^10.2.x",
-    "nyc": "^15.1.0"
+    "chai": "^4.5.0",
+    "eslint": "^9.16.0",
+    "ioredis": "^5.4.1",
+    "mocha": "^11.0.x",
+    "nyc": "^17.1.0"
   },
   "scripts": {
     "test": "mocha --reporter spec",
