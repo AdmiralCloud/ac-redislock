@@ -1,6 +1,7 @@
 const redisLock = require('../index')
 const expect = require('chai').expect
 const { v4: uuidV4 } = require('uuid')
+const { setTimeout: sleep } = require('node:timers/promises')
 
 const Redis = require('ioredis')
 const redis = new Redis()
@@ -10,13 +11,13 @@ const expectedLockValue = uuidV4()
 let lockValue
 
 
-describe('Prepare',  function() {
+describe('Use Redis',  function() {
   this.timeout(5000)
 
-  before((done) => {
-    redisLock.init({
+  before(async() => {
+    await redisLock.init({
       redis
-    }, done)
+    })
   })
 
   after(() => {
@@ -24,146 +25,256 @@ describe('Prepare',  function() {
   })
 
   describe('Run test', () => {
-    it('Lock for 2 seconds', done => {
+    it('Lock for 2 seconds', async() => {
       const params = {
         redisKey: testkey,
         value: expectedLockValue,
         expires: 2
       }
-      redisLock.lockKey(params, (err, r) => {
-        expect(null).to.be.null;
-        expect(r).to.equal(expectedLockValue)
-        return done()
-      })
+      const r = await redisLock.lockKey(params)
+      expect(r).to.equal(expectedLockValue)
     })
 
-    it('Lock again - should fail - key is locked', done => {
+    it('Lock again - should fail - key is locked', async() => {
       const params = {
         redisKey: testkey,
         expires: 2
       }
-      redisLock.lockKey(params, (err) => {
+      try {
+        await redisLock.lockKey(params)
+      }
+      catch(err) {
         expect(err).to.equal(423)
-        return done()
-      })
+      }
     })
 
-    it('Wait for 2 seconds', done => {
-      setTimeout(done, 2000)
+    it('Wait for 2 seconds', async() => {
+      await sleep(2000)
     })
 
-    it('Lock for 5 seconds - should work gain', done => {
+    it('Lock for 5 seconds - should work gain', async() => {
       const params = {
         redisKey: testkey,
         value: expectedLockValue,
         expires: 2
       }
-      redisLock.lockKey(params, (err, r) => {
-        expect(err).to.equal(null)
-        expect(r).to.equal(expectedLockValue)
-        lockValue = r
-        return done()
-      })
+      const r = await redisLock.lockKey(params)
+      expect(r).to.equal(expectedLockValue)
+      lockValue = r
     })
 
-    it('Release lock', done => {
+    it('Release lock', async() => {
       const params = {
         redisKey: testkey,
         value: lockValue
       }
-      redisLock.releaseLock(params, (err) => {
-        expect(err).to.equal(null)
-        return done()
-      })
+      await redisLock.releaseLock(params)
     })
   })
 
   describe('Release with value mismatch', () => {
-    it('Lock for 10 seconds', done => {
+    it('Lock for 10 seconds', async() => {
       const params = {
         redisKey: testkey,
         value: expectedLockValue,
         expires: 10
       }
-      redisLock.lockKey(params, (err, r) => {
-        expect(null).to.be.null;
-        expect(r).to.equal(expectedLockValue)
-        return done()
-      })
+      const r = await redisLock.lockKey(params)
+      expect(r).to.equal(expectedLockValue)
     })
 
-    it('Lock again - should fail - key is locked', done => {
+    it('Lock again - should fail - key is locked', async() => {
       const params = {
         redisKey: testkey,
-        expires: 2
       }
-      redisLock.lockKey(params, (err) => {
+      try {
+        await redisLock.lockKey(params)
+      }
+      catch(err) {
         expect(err).to.equal(423)
-        return done()
-      })
+      }
     })
 
-    it('Release lock with wrong value', done => {
+    it('Release lock with wrong value', async() => {
       const params = {
         redisKey: testkey,
         value: 'abc'
       }
-      redisLock.releaseLock(params, (err) => {
+      try {
+        await redisLock.releaseLock(params)
+      }
+      catch(err) {
         expect(err.message).to.equal('releaseLock_valueMismatch')
-        expect(err.additionalInfo.expected).to.equal(expectedLockValue)
-        expect(err.additionalInfo.value).to.equal(params.value)
-        return done()
-      })
+      }
     })
 
-    it('Release lock with wrong value but suppress warning', done => {
+    it('Release lock with wrong value but suppress warning', async() => {
       const params = {
         redisKey: testkey,
         value: 'abc',
         suppressMismatch: true
       }
-      redisLock.releaseLock(params, (err) => {
-        expect(err).to.equal(null)
-        return done()
-      })
+      await redisLock.releaseLock(params)
     })
 
-    it('Release lock with correct value', done => {
+    it('Release lock with correct value', async() => {
       const params = {
         redisKey: testkey,
         value: lockValue
       }
-      redisLock.releaseLock(params, (err) => {
-        expect(err).to.equal(null)
-        return done()
-      })
+      await redisLock.releaseLock(params)
     })
 
-    it('Lock again for 10 seconds - should work', done => {
+    it('Lock again for 10 seconds - should work', async() => {
       const params = {
         redisKey: testkey,
         value: expectedLockValue,
         expires: 10
       }
-      redisLock.lockKey(params, (err, r) => {
-        expect(err).to.be.null;
-        expect(r).to.equal(expectedLockValue)
-        return done()
-      })
+      const r = await redisLock.lockKey(params)
+      expect(r).to.equal(expectedLockValue)
     })
 
-    it('Release lock once more with correct value', done => {
+    it('Release lock once more with correct value', async() => {
       const params = {
         redisKey: testkey,
         value: lockValue
       }
-      redisLock.releaseLock(params, (err) => {
-        expect(err).to.equal(null)
-        return done()
-      })
+      await redisLock.releaseLock(params)
     })
-
 
   })
 })
 
+describe('Use NodeCache',  function() {
+  this.timeout(5000)
+
+  describe('Prepare', () => {
+    it('Init RedisLock', async() => {
+      await redisLock.init({
+        reInit: true
+      })
+    })
+  })
+
+  describe('Run test', () => {
+    it('Lock for 2 seconds', async() => {
+      const params = {
+        redisKey: testkey,
+        value: expectedLockValue,
+        expires: 2
+      }
+      const r = await redisLock.lockKey(params)
+      expect(r).to.equal(expectedLockValue)
+    })
+
+    it('Lock again - should fail - key is locked', async() => {
+      const params = {
+        redisKey: testkey,
+        expires: 2
+      }
+      try {
+        await redisLock.lockKey(params)
+      }
+      catch(err) {
+        expect(err).to.equal(423)
+      }
+    })
+
+    it('Wait for 2 seconds', async() => {
+      await sleep(2000)
+    })
+
+    it('Lock for 5 seconds - should work gain', async() => {
+      const params = {
+        redisKey: testkey,
+        value: expectedLockValue,
+        expires: 2
+      }
+      const r = await redisLock.lockKey(params)
+      expect(r).to.equal(expectedLockValue)
+      lockValue = r
+    })
+
+    it('Release lock', async() => {
+      const params = {
+        redisKey: testkey,
+        value: lockValue
+      }
+      await redisLock.releaseLock(params)
+    })
+  })
+
+  describe('Release with value mismatch', () => {
+    it('Lock for 10 seconds', async() => {
+      const params = {
+        redisKey: testkey,
+        value: expectedLockValue,
+        expires: 10
+      }
+      const r = await redisLock.lockKey(params)
+      expect(r).to.equal(expectedLockValue)
+    })
+
+    it('Lock again - should fail - key is locked', async() => {
+      const params = {
+        redisKey: testkey,
+      }
+      try {
+        await redisLock.lockKey(params)
+      }
+      catch(err) {
+        expect(err).to.equal(423)
+      }
+    })
+
+    it('Release lock with wrong value', async() => {
+      const params = {
+        redisKey: testkey,
+        value: 'abc'
+      }
+      try {
+        await redisLock.releaseLock(params)
+      }
+      catch(err) {
+        expect(err.message).to.equal('releaseLock_valueMismatch')
+      }
+    })
+
+    it('Release lock with wrong value but suppress warning', async() => {
+      const params = {
+        redisKey: testkey,
+        value: 'abc',
+        suppressMismatch: true
+      }
+      await redisLock.releaseLock(params)
+    })
+
+    it('Release lock with correct value', async() => {
+      const params = {
+        redisKey: testkey,
+        value: lockValue
+      }
+      await redisLock.releaseLock(params)
+    })
+
+    it('Lock again for 10 seconds - should work', async() => {
+      const params = {
+        redisKey: testkey,
+        value: expectedLockValue,
+        expires: 10
+      }
+      const r = await redisLock.lockKey(params)
+      expect(r).to.equal(expectedLockValue)
+    })
+
+    it('Release lock once more with correct value', async() => {
+      const params = {
+        redisKey: testkey,
+        value: lockValue
+      }
+      await redisLock.releaseLock(params)
+    })
+
+  })
+})
