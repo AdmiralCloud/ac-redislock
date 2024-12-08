@@ -1,3 +1,25 @@
+<a name="4.0.0"></a>
+ 
+# [4.0.0](https://github.com/admiralcloud/ac-redislock/compare/v3.0.0..v4.0.0) (2024-12-08 11:50:48)
+
+
+### Refactor
+
+* **App:** Use async/await | MP | [22b2e50ea2d2d7ce7a3dc00b9dda62411a3bee89](https://github.com/admiralcloud/ac-redislock/commit/22b2e50ea2d2d7ce7a3dc00b9dda62411a3bee89)    
+ac-redisLock now uses async/await.  
+Related issues: [undefined/undefined#master](undefined/browse/master)
+### Documentation
+
+* **App:** Info regarding version 4 | MP | [1293a61b44ffb2e5efb9799cb5de0bbe7b785eb0](https://github.com/admiralcloud/ac-redislock/commit/1293a61b44ffb2e5efb9799cb5de0bbe7b785eb0)    
+Info that version 4 has breaking changes  
+Related issues: [undefined/undefined#master](undefined/browse/master)
+### Chores
+
+* **App:** Updated packages | MP | [4f1e780af2c3f002187a275a30beb3bf82bb1bfb](https://github.com/admiralcloud/ac-redislock/commit/4f1e780af2c3f002187a275a30beb3bf82bb1bfb)    
+Updated packages  
+Related issues: [undefined/undefined#master](undefined/browse/master)
+## BREAKING CHANGES
+* **App:** This version no longer supports callbacks - async/await only!
 <a name="3.0.0"></a>
  
 # [3.0.0](https://github.com/admiralcloud/ac-redislock/compare/v2.0.1..v3.0.0) (2022-12-18 10:17:32)
