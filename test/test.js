@@ -42,9 +42,12 @@ describe('Use Redis',  function() {
       }
       try {
         await redisLock.lockKey(params)
+        // Should not reach here
+        expect.fail('Expected error was not thrown')
       }
       catch(err) {
-        expect(err).to.equal(423)
+        expect(err.message).to.equal('resource_locked')
+        expect(err.code).to.equal(423)
       }
     })
 
@@ -89,9 +92,12 @@ describe('Use Redis',  function() {
       }
       try {
         await redisLock.lockKey(params)
+        // Should not reach here
+        expect.fail('Expected error was not thrown')
       }
       catch(err) {
-        expect(err).to.equal(423)
+        expect(err.message).to.equal('resource_locked')
+        expect(err.code).to.equal(423)
       }
     })
 
@@ -175,9 +181,12 @@ describe('Use NodeCache',  function() {
       }
       try {
         await redisLock.lockKey(params)
+        // Should not reach here
+        expect.fail('Expected error was not thrown')
       }
       catch(err) {
-        expect(err).to.equal(423)
+        expect(err.message).to.equal('resource_locked')
+        expect(err.code).to.equal(423)
       }
     })
 
@@ -222,9 +231,12 @@ describe('Use NodeCache',  function() {
       }
       try {
         await redisLock.lockKey(params)
+        // Should not reach here
+        expect.fail('Expected error was not thrown')
       }
       catch(err) {
-        expect(err).to.equal(423)
+        expect(err.message).to.equal('resource_locked')
+        expect(err.code).to.equal(423)
       }
     })
 
@@ -275,6 +287,5 @@ describe('Use NodeCache',  function() {
       }
       await redisLock.releaseLock(params)
     })
-
   })
 })

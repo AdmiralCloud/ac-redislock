@@ -3,6 +3,9 @@ This tool can be used to lock operations (e.g. make sure workers will fetch a jo
 
 ![example workflow](https://github.com/admiralcloud/ac-redislock/actions/workflows/node.js.yml/badge.svg)
 
+## Breaking chnages version 5
+Instead of just returning 423, a locked resource will now throw an error with a clear error message "resource_locked" and a code 423. 
+
 ## Breaking changes version 4
 Version 4 no longer supports callbacks! Please use async/await instead.
 

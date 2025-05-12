@@ -1,5 +1,6 @@
 const { v4: uuidV4 } = require('uuid')
 const NodeCache = require('node-cache')
+const { ACError } = require('ac-custom-error')
 
 
 const redisLock = function() {
@@ -36,26 +37,25 @@ const redisLock = function() {
   /**
    * @param params.redisKey {String} REQUIRED identifier
    * @param params.expires {Integer} optional seconds to expire the key automatically
-   * @param cb (err or null) err can be 423 (redis key is locked) or a real error or null
    */
   const lockKey = async({ redisKey, expires = 10, value = uuidV4() }) => {
-    if (!redisKey) throw new Error('lockKey_redisKey_isRequired')
+    if (!redisKey) throw new ACError('lockKey_redisKey_isRequired')
 
     if (this.redis) {
       const checkValue = await this.redis.set(redisKey, value, 'EX', expires, 'NX')
       if (checkValue === 'OK') return value
-      else return 423 
+      else throw new ACError('resource_locked', 423)
     }
     else {
       const checKValue = this.cache.get(redisKey)
-      if (checKValue) return 423
+      if (checKValue) throw new ACError('resource_locked', 423)
       this.cache.set(redisKey, value, expires)
       return value
     }
   }
 
   const releaseLock = async({ redisKey, value, suppressMismatch = this.suppressMismatch  }) => {
-    if (!redisKey) throw new Error('releaseLock_redisKey_isRequired')
+    if (!redisKey) throw new ACError('releaseLock_redisKey_isRequired')
 
     // check value
     if (value) {
@@ -68,7 +68,7 @@ const redisLock = function() {
       }
       if (checKValue !== value) {
         if (suppressMismatch) return // exit without error 
-        throw new Error('releaseLock_valueMismatch')
+        throw new ACError('releaseLock_valueMismatch')
       }
     }
 
