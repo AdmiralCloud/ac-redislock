@@ -1,3 +1,19 @@
+ 
+# [5.0.0](https://github.com/admiralcloud/ac-redislock/compare/v4.0.0..v5.0.0) (2025-05-12 06:59:29)
+
+
+### Bug Fix
+
+* **App:** Throw error in case resource is locked | MP | [642d2532a1aa89526ad1bc00bd67836632e38204](https://github.com/admiralcloud/ac-redislock/commit/642d2532a1aa89526ad1bc00bd67836632e38204)    
+Throw an error (ACError class) with code 423  
+Related issues:
+### Chores
+
+* **App:** Updated packages | MP | [77fb232c7ae5de3181209cb5733b69560d886499](https://github.com/admiralcloud/ac-redislock/commit/77fb232c7ae5de3181209cb5733b69560d886499)    
+Updated packages  
+Related issues:
+## BREAKING CHANGES
+* **App:** If resource is already locked, you will now get a string response (resource_locked) and a code 423. The error has a clear error message and the code 423 now.
 <a name="4.0.0"></a>
  
 # [4.0.0](https://github.com/admiralcloud/ac-redislock/compare/v3.0.0..v4.0.0) (2024-12-08 11:50:48)
