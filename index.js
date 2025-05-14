@@ -1,34 +1,37 @@
 const { v4: uuidV4 } = require('uuid')
 const NodeCache = require('node-cache')
 const { ACError } = require('ac-custom-error')
-
-
 const redisLock = function() {
+  // Private Variablen in der Closure
+  let redis
+  let cache
+  let logger = console
+  let logLevel = 'log'
+  let suppressMismatch = false
+
   /**
-   * @param params.redis {Instance}  Redis instance to use - use IORedis or any other Redis package that supports async/await, if not provided, node-cache is used
+   * @param params.redis {Instance} Redis instance to use - use IORedis or any other Redis package that supports async/await, if not provided, node-cache is used
    * @param params.logger {Instance} optional logger (e.g. Winston). Falls back to console
    * @param params.logLevel {String} optional logLevel
    */
-
-  const init = async({ reInit, redis, logger = console, logLevel = 'log', suppressMismatch = false }) => {
+  const init = async({ reInit, redis: redisInstance, logger: loggerInstance = console, logLevel: logLevelValue = 'log', suppressMismatch: suppressMismatchValue = false }) => {
     // only initialize if instance does not exist
-    if (reInit) this.redis = undefined
-    this.redis = redis
-    if (!this.redis) {
-      this.cache = new NodeCache()
+    if (reInit) redis = undefined
+    redis = redisInstance
+    if (!redis) {
+      cache = new NodeCache()
     }
-    this.logger = this.logger || logger
-    this.logLevel = this.logLevel || logLevel
-    this.suppressMismatch = this.suppressMismatch || suppressMismatch
-
+    logger = logger || loggerInstance
+    logLevel = logLevel || logLevelValue
+    suppressMismatch = suppressMismatch || suppressMismatchValue
     // make a test connection
-    if (this.redis) {
+    if (redis) {
       const testKey = uuidV4()
       try {
-        await this.redis.set(testKey, 1, 'EX', 1)
+        await redis.set(testKey, 1, 'EX', 1)
       }
       catch(err) {
-        this.logger['error']({ message: 'cannotConnectToRedis' })
+        logger['error']({ message: 'cannotConnectToRedis' })
         throw err
       }
     }
@@ -40,44 +43,41 @@ const redisLock = function() {
    */
   const lockKey = async({ redisKey, expires = 10, value = uuidV4() }) => {
     if (!redisKey) throw new ACError('lockKey_redisKey_isRequired')
-
-    if (this.redis) {
-      const checkValue = await this.redis.set(redisKey, value, 'EX', expires, 'NX')
+    if (redis) {
+      const checkValue = await redis.set(redisKey, value, 'EX', expires, 'NX')
       if (checkValue === 'OK') return value
       else throw new ACError('resource_locked', 423)
     }
     else {
-      const checKValue = this.cache.get(redisKey)
+      const checKValue = cache.get(redisKey)
       if (checKValue) throw new ACError('resource_locked', 423)
-      this.cache.set(redisKey, value, expires)
+      cache.set(redisKey, value, expires)
       return value
     }
   }
 
-  const releaseLock = async({ redisKey, value, suppressMismatch = this.suppressMismatch  }) => {
+  const releaseLock = async({ redisKey, value, suppressMismatch: suppressMismatchParam = suppressMismatch }) => {
     if (!redisKey) throw new ACError('releaseLock_redisKey_isRequired')
-
     // check value
     if (value) {
       let checKValue
-      if (this.redis) {
-          checKValue = await this.redis.get(redisKey)
+      if (redis) {
+        checKValue = await redis.get(redisKey)
       }
       else {
-       checKValue = this.cache.get(redisKey)
+        checKValue = cache.get(redisKey)
       }
       if (checKValue !== value) {
-        if (suppressMismatch) return // exit without error 
+        if (suppressMismatchParam) return // exit without error
         throw new ACError('releaseLock_valueMismatch')
       }
     }
-
     // delete key
-    if (this.redis) {
-      await this.redis.del(redisKey)
+    if (redis) {
+      await redis.del(redisKey)
     }
     else {
-      this.cache.del(redisKey)
+      cache.del(redisKey)
     }
   }
 
