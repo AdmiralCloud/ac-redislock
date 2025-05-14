@@ -1,3 +1,12 @@
+
+## [5.0.1](https://github.com/admiralcloud/ac-redislock/compare/v5.0.0..v5.0.1) (2025-05-14 06:27:08)
+
+
+### Bug Fix
+
+* **App:** Use closure instead of this | MP | [9ad7de8db078ea1a3637e80a81ad088b663213a4](https://github.com/admiralcloud/ac-redislock/commit/9ad7de8db078ea1a3637e80a81ad088b663213a4)    
+To support different scenarios we internally use closure instead of this  
+Related issues:
  
 # [5.0.0](https://github.com/admiralcloud/ac-redislock/compare/v4.0.0..v5.0.0) (2025-05-12 06:59:29)
 
