@@ -1,4 +1,13 @@
 
+## [5.0.2](https://github.com/admiralcloud/ac-redislock/compare/v5.0.1..v5.0.2) (2025-08-30 06:45:27)
+
+
+### Bug Fix
+
+* **App:** Package updates | MP | [28524c4601016f74495ab80dc3faf99492f0a016](https://github.com/admiralcloud/ac-redislock/commit/28524c4601016f74495ab80dc3faf99492f0a016)    
+Package updates  
+Related issues:
+
 ## [5.0.1](https://github.com/admiralcloud/ac-redislock/compare/v5.0.0..v5.0.1) (2025-05-14 06:27:08)
 
 
