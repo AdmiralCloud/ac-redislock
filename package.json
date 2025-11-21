@@ -14,8 +14,8 @@
   },
   "devDependencies": {
     "chai": "^4.5.0",
-    "eslint": "^9.35.0",
-    "ioredis": "^5.7.0",
+    "eslint": "^9.39.1",
+    "ioredis": "^5.8.2",
     "mocha": "^11.7.x",
     "nyc": "^17.1.0"
   },
