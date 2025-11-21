@@ -1,4 +1,18 @@
 
+## [5.0.4](https://github.com/admiralcloud/ac-redislock/compare/v5.0.3..v5.0.4) (2025-11-21 16:04:35)
+
+
+### Bug Fix
+
+* **App:** add getLock method to retrieve lock value if it exist | VD | [a85189f0f5540fbdec60a9ebba80f9627f4a71be](https://github.com/admiralcloud/ac-redislock/commit/a85189f0f5540fbdec60a9ebba80f9627f4a71be)    
+add getLock method to retrieve lock value if it exist  
+Related issues:
+### Chores
+
+* **Misc:** Updated packages | VD | [294605939f078c249f17e8a1ec24bf833fd109db](https://github.com/admiralcloud/ac-redislock/commit/294605939f078c249f17e8a1ec24bf833fd109db)    
+Updated packages  
+Related issues:
+
 ## [5.0.3](https://github.com/admiralcloud/ac-redislock/compare/v5.0.2..v5.0.3) (2025-09-19 05:25:29)
 
 
