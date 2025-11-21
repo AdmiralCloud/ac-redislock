@@ -48,6 +48,10 @@ ReleaseKey has the following parameters
 + value - if set will be compared with the redisKey value before releasing. If not matching, the function will return an error message
 + suppressMismatch - if true, no warning will be logged if the value does not match the stored one (see "multiple processes" section)
 
+getLock has following parameters
++ redisKey - STRING required name for the key
++ value - if set it will be used to match existing redisKey value before returning. If not matching, the function will return an error message
+
 ## Examples
 
 ```
@@ -70,6 +74,10 @@ try {
 catch(err) {
   // err can be 423 -> key is locked
 }
+
+// retrieve lock value later if needed before releasing lock
+const value = await redisLock.getLock(params)
+console.log('lock value:', value)
 
 // redisKey is deleted and lock released
 await redisLock.releaseKey(params)
