@@ -1,3 +1,26 @@
+ 
+# [6.0.0](https://github.com/admiralcloud/ac-redislock/compare/v5.0.3..v6.0.0) (2025-11-25 15:28:59)
+
+
+### Bug Fix
+
+* **App:** Node 20+ is now required | MP | [87fc845249990a1ff3c8eee7af21022f5e5792da](https://github.com/admiralcloud/ac-redislock/commit/87fc845249990a1ff3c8eee7af21022f5e5792da)    
+Node 20+ is now required  
+Related issues:
+* **App:** add getLock method to retrieve lock value if it exist | VD | [a85189f0f5540fbdec60a9ebba80f9627f4a71be](https://github.com/admiralcloud/ac-redislock/commit/a85189f0f5540fbdec60a9ebba80f9627f4a71be)    
+add getLock method to retrieve lock value if it exist  
+Related issues:
+### Chores
+
+* **release:** v5.0.4 [ci skip] | [9799c8327ea0b578bd7985fb9ed1a5aa4985a817](https://github.com/admiralcloud/ac-redislock/commit/9799c8327ea0b578bd7985fb9ed1a5aa4985a817)    
+
+### Chores
+
+* **Misc:** Updated packages | VD | [294605939f078c249f17e8a1ec24bf833fd109db](https://github.com/admiralcloud/ac-redislock/commit/294605939f078c249f17e8a1ec24bf833fd109db)    
+Updated packages  
+Related issues:
+## BREAKING CHANGES
+* **App:** Node 20+ is now required
 
 ## [5.0.4](https://github.com/admiralcloud/ac-redislock/compare/v5.0.3..v5.0.4) (2025-11-21 16:04:35)
 
