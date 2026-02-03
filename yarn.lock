@@ -464,10 +464,10 @@
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.15.tgz#596a1747233694d50f6ad8a7869fcb6f56cf5841"
   integrity sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==
 
-ac-custom-error@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/ac-custom-error/-/ac-custom-error-1.0.5.tgz#f61b8f0a5e71f364d46ea041113d5d530df5ef5c"
-  integrity sha512-g4klFNE8QxU/wXmeGO8Z+hF/WoBirAnLSc/EVNNC2skKNL6uFkr1cGBF16c0f+b9rIpeLGnhxwhW2jyvCspSng==
+ac-custom-error@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/ac-custom-error/-/ac-custom-error-1.0.6.tgz#59ee303eaa605789009596d5403db5fdcb3cb7ff"
+  integrity sha512-ltxc5X4uQ42OQfJ0ilCOhTaD+SjblTKWoZHw7rApMJsaze1sralbG5Q+6BgEp8dxwWsSfSj2/eA1Ijfe4UjEKQ==
 
 ac-semantic-release@^0.4.10:
   version "0.4.10"
@@ -793,10 +793,10 @@ denque@^2.1.0:
   resolved "https://registry.yarnpkg.com/denque/-/denque-2.1.0.tgz#e93e1a6569fb5e66f16a3c2a2964617d349d6ab1"
   integrity sha512-HVQE3AAb/pxF8fQAoiqpvg9i3evqug3hoiwakOyZAwJm+6vZehbkYXZ0l4JxS+I3QxM97v5aaRNhj8v5oBhekw==
 
-diff@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/diff/-/diff-7.0.0.tgz#3fb34d387cd76d803f6eebea67b921dab0182a9a"
-  integrity sha512-PJWHUb1RFevKCwaFA9RlG5tCd+FO5iRh9A8HEtkmBH2Li03iJriB6m6JIN4rGz3K3JLawI7/veA1xzRKP6ISBw==
+diff@^7.0.0, diff@^8.0.3:
+  version "8.0.3"
+  resolved "https://registry.yarnpkg.com/diff/-/diff-8.0.3.tgz#c7da3d9e0e8c283bb548681f8d7174653720c2d5"
+  integrity sha512-qejHi7bcSD4hQAZE0tNAawRK1ZtafHDmMTMkrrIGgSLl7hTnQHmKCeB45xAcbfTqK2zowkM3j3bHt/4b/ARbYQ==
 
 eastasianwidth@^0.2.0:
   version "0.2.0"
