@@ -1,4 +1,13 @@
 
+## [6.0.3](https://github.com/admiralcloud/ac-redislock/compare/v6.0.2..v6.0.3) (2026-02-24 18:55:55)
+
+
+### Bug Fix
+
+* **Misc:** Package updates | MP | [09e3f11ecd78de657c57d83495289247f237e81b](https://github.com/admiralcloud/ac-redislock/commit/09e3f11ecd78de657c57d83495289247f237e81b)    
+Package updates incl ESLint 9 -> 10 and lint fixes  
+Related issues:
+
 ## [6.0.2](https://github.com/admiralcloud/ac-redislock/compare/v6.0.1..v6.0.2) (2026-02-03 08:10:35)
 
 
