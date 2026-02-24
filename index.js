@@ -16,7 +16,7 @@ const redisLock = function() {
    */
   const init = async({ reInit, redis: redisInstance, logger: loggerInstance = console, logLevel: logLevelValue = 'log', suppressMismatch: suppressMismatchValue = false }) => {
     // only initialize if instance does not exist
-    if (reInit) redis = undefined
+    if (reInit) { redis = undefined }
     redis = redisInstance
     if (!redis) {
       cache = new NodeCache()
@@ -42,22 +42,22 @@ const redisLock = function() {
    * @param params.expires {Integer} optional seconds to expire the key automatically
    */
   const lockKey = async({ redisKey, expires = 10, value = uuidV4() }) => {
-    if (!redisKey) throw new ACError('lockKey_redisKey_isRequired')
+    if (!redisKey) { throw new ACError('lockKey_redisKey_isRequired') }
     if (redis) {
       const checkValue = await redis.set(redisKey, value, 'EX', expires, 'NX')
-      if (checkValue === 'OK') return value
-      else throw new ACError('resource_locked', 423)
+      if (checkValue === 'OK') { return value }
+      else { throw new ACError('resource_locked', 423) }
     }
     else {
       const checKValue = cache.get(redisKey)
-      if (checKValue) throw new ACError('resource_locked', 423)
+      if (checKValue) { throw new ACError('resource_locked', 423) }
       cache.set(redisKey, value, expires)
       return value
     }
   }
 
   const releaseLock = async({ redisKey, value, suppressMismatch: suppressMismatchParam = suppressMismatch }) => {
-    if (!redisKey) throw new ACError('releaseLock_redisKey_isRequired')
+    if (!redisKey) { throw new ACError('releaseLock_redisKey_isRequired') }
     // check value
     if (value) {
       let checKValue
@@ -68,7 +68,7 @@ const redisLock = function() {
         checKValue = cache.get(redisKey)
       }
       if (checKValue !== value) {
-        if (suppressMismatchParam) return // exit without error
+        if (suppressMismatchParam) { return } // exit without error
         throw new ACError('releaseLock_valueMismatch')
       }
     }
@@ -82,12 +82,12 @@ const redisLock = function() {
   }
 
   const getLock = async ({ redisKey, value }) => {
-    if (!redisKey) throw new ACError('getLock_redisKey_isRequired')
+    if (!redisKey) { throw new ACError('getLock_redisKey_isRequired') }
 
     let checkValue
-    if (redis) checkValue = await redis.get(redisKey)
-    else checKValue = cache.get(redisKey)
-    if (value && value !== checkValue) throw new ACError('getLock_valueMismatch')
+    if (redis) { checkValue = await redis.get(redisKey) }
+    else { checKValue = cache.get(redisKey) }
+    if (value && value !== checkValue) { throw new ACError('getLock_valueMismatch') }
 
     return checkValue
   }
