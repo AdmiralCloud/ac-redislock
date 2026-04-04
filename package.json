@@ -5,16 +5,16 @@
   "repository": "admiralcloud/ac-redislock",
   "version": "6.0.5",
   "dependencies": {
-    "ac-custom-error": "^2.0.2",
-    "ac-semantic-release": "^0.4.10",
+    "ac-custom-error": "^2.0.3",
+    "ac-semantic-release": "^1.0.1",
     "async": "^3.2.6",
-    "lodash": "^4.17.23",
+    "lodash": "^4.18.1",
     "node-cache": "^5.1.2",
     "uuid": "^11.1.0"
   },
   "devDependencies": {
     "chai": "^4.5.0",
-    "eslint": "^10.1.0",
+    "eslint": "^10.2.0",
     "globals": "^17.4.0",
     "ioredis": "^5.10.1",
     "mocha": "^11.7.x",
