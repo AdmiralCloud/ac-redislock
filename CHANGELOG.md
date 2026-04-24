@@ -1,3 +1,12 @@
+## [6.0.8](https://github.com/admiralcloud/ac-redislock/compare/v6.0.7..v6.0.8) (2026-04-24 18:22:45)
+
+
+### Bug Fix
+
+
+* **App:** Replaced uuid with native function | MP | [e37217fdfc72712e46240335d09c125386aed1dc](https://github.com/admiralcloud/ac-redislock/commit/e37217fdfc72712e46240335d09c125386aed1dc)    
+Replaced uuid with native function  
+Related issues:
 ## [6.0.7](https://github.com/admiralcloud/ac-redislock/compare/v6.0.6..v6.0.7) (2026-04-17 07:54:15)
 
 
