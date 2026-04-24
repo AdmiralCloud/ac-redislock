@@ -1,4 +1,4 @@
-const { v4: uuidV4 } = require('uuid')
+const { randomUUID: uuidV4 } = require('crypto')
 const NodeCache = require('node-cache')
 const { ACError } = require('ac-custom-error')
 const redisLock = function() {

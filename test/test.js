@@ -1,6 +1,6 @@
 const redisLock = require('../index')
 const expect = require('chai').expect
-const { v4: uuidV4 } = require('uuid')
+const { randomUUID: uuidV4 } = require('crypto')
 const { setTimeout: sleep } = require('node:timers/promises')
 
 const Redis = require('ioredis')
