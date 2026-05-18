@@ -13,8 +13,8 @@
   },
   "devDependencies": {
     "chai": "^4.5.0",
-    "eslint": "^10.2.1",
-    "globals": "^17.5.0",
+    "eslint": "^10.4.0",
+    "globals": "^17.6.0",
     "ioredis": "^5.10.1",
     "mocha": "^11.7.x",
     "nyc": "^18.0.0"
