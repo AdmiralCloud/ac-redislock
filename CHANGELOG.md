@@ -1,3 +1,18 @@
+## [6.0.14](https://github.com/admiralcloud/ac-redislock/compare/v6.0.13..v6.0.14) (2026-07-05 14:25:01)
+
+
+### Bug Fix
+
+
+* **App:** Add create() factory for independent instances | MP | [9026f41bfe274b3f351bf8f09faa8a000ba8abf0](https://github.com/admiralcloud/ac-redislock/commit/9026f41bfe274b3f351bf8f09faa8a000ba8abf0)    
+Add create() factory for independent instances  
+Related issues:
+### Chores
+
+
+* **App:** Updated packages | MP | [abcd45743e1cd202a093569a928f088b9a5006c6](https://github.com/admiralcloud/ac-redislock/commit/abcd45743e1cd202a093569a928f088b9a5006c6)    
+Updated packages  
+Related issues:
 ## [6.0.13](https://github.com/admiralcloud/ac-redislock/compare/v6.0.12..v6.0.13) (2026-06-22 15:08:35)
 
 
