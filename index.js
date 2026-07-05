@@ -100,4 +100,6 @@ const redisLock = function() {
   }
 }
 
-module.exports = redisLock()
+const instance = redisLock()
+instance.create = redisLock
+module.exports = instance

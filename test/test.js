@@ -152,6 +152,49 @@ describe('Use Redis',  function() {
   })
 })
 
+describe('create() - Independent instances', function() {
+  this.timeout(5000)
+
+  const redis1 = new Redis()
+  const redis2 = new Redis({ db: 1 })
+  const instanceA = redisLock.create()
+  const instanceB = redisLock.create()
+  const sharedKey = uuidV4()
+
+  before(async() => {
+    await instanceA.init({ redis: redis1 })
+    await instanceB.init({ redis: redis2 })
+    await redis2.del(sharedKey)
+  })
+
+  after(async() => {
+    await redis2.del(sharedKey)
+    redis1.quit()
+    redis2.quit()
+  })
+
+  it('instanceA can lock a key', async() => {
+    const r = await instanceA.lockKey({ redisKey: sharedKey, expires: 10 })
+    expect(r).to.be.a('string')
+  })
+
+  it('instanceA cannot lock the same key twice', async() => {
+    try {
+      await instanceA.lockKey({ redisKey: sharedKey, expires: 10 })
+      expect.fail('Expected error was not thrown')
+    }
+    catch(err) {
+      expect(err.message).to.equal('resource_locked')
+    }
+  })
+
+  it('instanceB (different DB) can lock the same key independently', async() => {
+    const r = await instanceB.lockKey({ redisKey: sharedKey, expires: 10 })
+    expect(r).to.be.a('string')
+  })
+
+})
+
 describe('Use NodeCache',  function() {
   this.timeout(5000)
 
