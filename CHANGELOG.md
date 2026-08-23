@@ -1,3 +1,11 @@
+## [6.0.17](https://github.com/admiralcloud/ac-redislock/compare/v6.0.16..v6.0.17) (2026-08-23 11:08:33)
+
+
+### Bug Fix
+
+
+* **App:** Package updates | MP | [2d329b3ccb112a7d69a0482131dc5e46923a0462](https://github.com/admiralcloud/ac-redislock/commit/2d329b3ccb112a7d69a0482131dc5e46923a0462)    
+Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
 ## [6.0.16](https://github.com/admiralcloud/ac-redislock/compare/v6.0.15..v6.0.16) (2026-08-01 13:37:18)
 
 
